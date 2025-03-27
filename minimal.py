@@ -48,7 +48,7 @@ if model:
 
     try:
         # Raw prediction
-        calories = model.predict(input_data)[0]
+        calories = model.predict(expected_features)[0]
         st.subheader(f"Estimated burn: {calories:.0f} kcal")
         st.progress(min(int(calories / 10), 100))  # Simple visual
     except Exception as e:
