@@ -4,7 +4,7 @@ import pandas as pd
 
 # Load model with error handling
 try:
-    with open('finalized_model.pkl', 'rb') as f:
+    with open('finalized_model.pickle', 'rb') as f:
         model = pickle.load(f)
 except Exception as e:
     st.error(f"Error loading model: {e}")
@@ -20,18 +20,29 @@ with col1:
 with col2: 
     heart_rate = st.number_input("Heart Rate (bpm)", 50, 200, 100)
 
-if st.button("Predict") and model:
-    # Minimal input formatting
-    input_data = pd.DataFrame([[duration, heart_rate]], 
-                            columns=["Duration", "Heart_Rate"])
-    
-    # Raw prediction
-    calories = model.predict(input_data)[0]
-    
-    # Basic output
-    st.subheader(f"Estimated burn: {calories:.0f} kcal")
-    st.progress(min(int(calories / 10), 100))  # Simple visual
+# Check if model is loaded
+if model:
+    expected_features = model.feature_names_in_
+    st.write("Expected features:", expected_features)
 
-elif not model:
+    # When user presses the button
+    if st.button("Predict"):
+        # Prepare the input data to match the expected features
+        input_data = pd.DataFrame({
+            'Duration': [duration],
+            'Heart_Rate': [heart_rate],
+            # You can add any other required features here as per the model's needs
+        })
+
+        # Ensure the input data columns match the model's expected columns
+        input_data = input_data[expected_features]
+
+        try:
+            # Raw prediction
+            calories = model.predict(input_data)[0]
+            st.subheader(f"Estimated burn: {calories:.0f} kcal")
+            st.progress(min(int(calories / 10), 100))  # Simple visual
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
+else:
     st.warning("⚠️ Model is not available. Please check the model file.")
-
