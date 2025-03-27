@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 import sys
 import os
-# ---- XGBoost Import with Clear Error Message ----
+
 try:
     from xgboost import XGBRegressor
 except ImportError as e:
@@ -15,7 +15,7 @@ except ImportError as e:
     """)
     st.stop()  # Halt the app completely
 
-# ---- Model Loading ----
+
 @st.cache_resource
 def load_model():
     try:
