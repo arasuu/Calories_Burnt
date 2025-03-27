@@ -15,7 +15,7 @@ st.title("⚡ Quick Calorie Check")
 
 with st.form("user_input"):
     st.header("Personal Details")
-    gender = st.radio("male", ["male", "female"])
+    gender = st.radio("Gender", ["male", "female"])
     age = st.slider("Age", 10, 100, 25)
     height = st.number_input("Height (cm)", 100, 250, 170)
     weight = st.number_input("Weight (kg)", 30, 200, 70)
@@ -27,7 +27,7 @@ with st.form("user_input"):
     
     if st.form_submit_button("Predict Calories"):
         input_data = pd.DataFrame([[
-            male, age, height, weight, 
+            gender, age, height, weight, 
             duration, heart_rate, body_temp
         ]], columns=[
             "male", "Age", "Height", "Weight",
