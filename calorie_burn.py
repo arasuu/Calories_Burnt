@@ -9,8 +9,8 @@ import os
 def load_model():
     try:
         # Try both .pkl and .model extensions
-        if os.path.exists('xgboost_calorie_model.pkl'):
-            with open('xgboost_calorie_model.pkl', 'rb') as f:
+        if os.path.exists('finalized_model.pkl'):
+            with open('finalized.pkl', 'rb') as f:
                 return pickle.load(f)
         elif os.path.exists('model.model'):
             return xgb.Booster(model_file='model.model')
