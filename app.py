@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 
 # Load model
-with open('calorie_predictor.pickle', 'rb') as f:
+with open('finalized_model.pickle', 'rb') as f:
     model = pickle.load(f)
 
 # App UI
