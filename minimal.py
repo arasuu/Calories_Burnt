@@ -44,7 +44,7 @@ def load_model():
 st.title("🔥 Calorie Burn Predictor")
 model = load_model()
 st.write("Model type:", type(model))  # Should show XGBRegressor
-
+'''
 if model:
     with st.form("input_form"):
         col1, col2 = st.columns(2)
@@ -74,6 +74,43 @@ if model:
                 st.success(f"**Estimated Calories Burned:** {calories:.0f} kcal")
                 
             except Exception as e:
-                st.error(f"Prediction failed: {str(e)}")
+                st.error(f"Prediction failed: {str(e)}")'''
+
+# Replace your prediction code with this:
+
+if submitted and model:
+    try:
+        # Debug: Show input data structure
+        st.write("Model features expected:", model.feature_names_in_)
+        
+        input_data = pd.DataFrame({
+            'Gender': [1 if gender == "Male" else 0],
+            'Age': [age],
+            'Height': [height],
+            'Weight': [weight],
+            'Duration': [duration],
+            'Heart_Rate': [heart_rate]
+        })
+        
+        # Ensure column order matches training
+        input_data = input_data[model.feature_names_in_]
+        
+        st.write("Input data being sent:", input_data)
+        
+        # Make prediction
+        calories = model.predict(input_data)[0]
+        st.success(f"Estimated Calories Burned: {calories:.0f} kcal")
+        
+    except Exception as e:
+        st.error(f"""
+        Prediction Failed!
+        =================
+        Error: {str(e)}
+        Please check:
+        1. All input fields are filled
+        2. Model expects {model.n_features_in_} features
+        3. Input types are correct
+        """)
+
 else:
     st.warning("App cannot run without a valid model")
