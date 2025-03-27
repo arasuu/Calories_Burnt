@@ -13,6 +13,8 @@ except Exception as e:
 # Minimal UI
 st.title("⚡Calorie Burn Predictor 🔥")
 
+st.text_input("Enter your name (optional)")
+
 with st.form("user_input"):
     st.header("Personal Details")
     gender = st.radio("Gender", ["male", "female"])
