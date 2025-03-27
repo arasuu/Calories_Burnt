@@ -42,7 +42,7 @@ with st.form("user_input"):
 
         
         # Reorder columns to match model's expected order
-        expected_columns = ["male", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp","Name"]
+        expected_columns = ["male", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"]
         input_data = input_data[expected_columns]
 
 # Check if model is loaded
@@ -50,8 +50,6 @@ if model:
     expected_features = model.feature_names_in_
     #st.write("Expected features:", expected_features)
     
-    input_data.insert(0, "Name", name if name else "N/A")
-
     st.write("Input data preview:", input_data.head())  # Display input data preview
         
     try:
