@@ -96,7 +96,12 @@ if submitted and model:
         input_data = input_data[model.feature_names_in_]
         
         st.write("Input data being sent:", input_data)
-        
+
+        st.write("⭐ DEBUG - Model Info ⭐")
+        st.write("Model type:", type(model))
+        st.write("Model features expected:", model.feature_names_in_)
+        st.write("Input data being sent:", input_data)
+        st.write("Input columns:", input_data.columns)
         # Make prediction
         calories = model.predict(input_data)[0]
         st.success(f"Estimated Calories Burned: {calories:.0f} kcal")
