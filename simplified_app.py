@@ -4,7 +4,8 @@ import streamlit as st
 import pandas as pd
 import pickle
 import os
-
+import xgboost
+from xgboost import XGBRegressor
 
 # --- SETTINGS ---
 st.set_page_config(
