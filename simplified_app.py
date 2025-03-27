@@ -3,9 +3,46 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import sys
 import os
-import xgboost
-from xgboost import XGBRegressor
+
+# ---- XGBoost Import with Clear Error Message ----
+try:
+    from xgboost import XGBRegressor
+except ImportError as e:
+    st.error(f"""
+    ❌ Critical Error: XGBoost not installed!
+    ========================================
+    Please add 'xgboost>=2.0.0' to requirements.txt
+    Current Python path: {sys.path}
+    """)
+    st.stop()  # Halt the app completely
+
+# ---- Model Loading ----
+@st.cache_resource
+def load_model():
+    try:
+        with open('calorie_model.pkl', 'rb') as f:
+            model = pickle.load(f)
+            
+            # Verify the loaded model is actually an XGBoost model
+            if "xgboost" not in str(type(model)).lower():
+                st.error("⚠️ Loaded model is not an XGBoost model!")
+                return None
+                
+            return model
+    except Exception as e:
+        st.error(f"""
+        🚨 Model Loading Failed
+        ======================
+        Error: {str(e)}
+        Make sure:
+        1. calorie_model.pkl exists
+        2. It's a valid XGBoost model
+        3. File is in the same directory
+        """)
+        return None
+
 
 # --- SETTINGS ---
 st.set_page_config(
