@@ -11,7 +11,7 @@ except Exception as e:
     model = None
 
 # Minimal UI
-st.title("⚡ Quick Calorie Check")
+st.title("⚡Calorie Burn Predictor 🔥")
 
 with st.form("user_input"):
     st.header("Personal Details")
