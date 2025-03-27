@@ -33,14 +33,6 @@ with st.form("user_input"):
         ])
                 
         # Predict
-        #calories = model.predict(input_data)[0]
-        #st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
-
-input_data = pd.DataFrame([[1, 30, 175, 70, 30, 120, 37.0]], columns=['Gender','Age','Height','Weight','Duration','Heart_Rate','Body_Temp'])
-
-try:
-    st.write("Test prediction result:", model.predict(input_data)[0])
-except Exception as e:
-    st.error(f"Test failed: {str(e)}")
-
+        calories = model.predict(input_data)[0]
+        st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
 
