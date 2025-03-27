@@ -22,7 +22,6 @@ if st.button("Predict"):
     input_data = input_data.astype(float)
     input_data = pd.DataFrame([[duration, heart_rate]], 
                             columns=["Duration", "Heart_Rate"])
-
     print("Model features during training:", model.feature_names_in_)
     print("Your input columns:", input_data.columns)
     print("Input dtypes:", input_data.dtypes)
