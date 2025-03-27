@@ -44,7 +44,7 @@ if model:
     st.write("Expected features:", expected_features)
 
         
-    input_data = input_data[expected_features]
+    #input_data = input_data[expected_features]
 
     try:
         # Raw prediction
