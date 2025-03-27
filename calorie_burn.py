@@ -46,7 +46,10 @@ with st.form("user_input"):
 if model:
     expected_features = model.feature_names_in_
     #st.write("Expected features:", expected_features)
+    
+    input_data["Name"] = name if name else "N/A"
 
+    st.write("Input data preview:", input_data.head()) 
     st.write("Input data preview:", input_data.head())  # Display input data preview
         
     try:
