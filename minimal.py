@@ -18,9 +18,14 @@ with col2:
 
 if st.button("Predict"):
     # Minimal input formatting
+    # Convert all to numeric
+    input_data = input_data.astype(float)
     input_data = pd.DataFrame([[duration, heart_rate]], 
                             columns=["Duration", "Heart_Rate"])
-    
+
+    print("Model features during training:", model.feature_names_in_)
+    print("Your input columns:", input_data.columns)
+    print("Input dtypes:", input_data.dtypes)
     # Raw prediction
     calories = model.predict(input_data)[0]
     
