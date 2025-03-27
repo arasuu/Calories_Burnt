@@ -33,8 +33,8 @@ with st.form("user_input"):
         ])
                 
         # Predict
-        calories = model.predict(input_data)[0]
-        st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
+        #calories = model.predict(input_data)[0]
+        #st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
 
 test_data = pd.DataFrame([[1, 30, 175, 70, 30, 120, 37.0]], 
                         columns=['Gender','Age','Height','Weight',
