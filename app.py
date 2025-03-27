@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 
+
 # Load model
 with open('finalized_model.pkl', 'rb') as f:
     model = pickle.load(f)
@@ -35,11 +36,12 @@ with st.form("user_input"):
         calories = model.predict(input_data)[0]
         st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
 
-# Add data table (optional)
-if st.checkbox("Show Sample Data"):
-    st.table(pd.DataFrame([[
-        14733363, "male", 68, 190, 94, 29, 105, 40.8, 350
-    ]], columns=[
-        "User_ID", "Gender", "Age", "Height", "Weight",
-        "Duration", "Heart_Rate", "Body_Temp", "Calories"
-    ]))
+test_data = pd.DataFrame([[1, 30, 175, 70, 30, 120, 37.0]], 
+                        columns=['Gender','Age','Height','Weight',
+                                'Duration','Heart_Rate','Body_Temp'])
+try:
+    st.write("Test prediction result:", model.predict(test_data)[0])
+except Exception as e:
+    st.error(f"Test failed: {str(e)}")
+
+
