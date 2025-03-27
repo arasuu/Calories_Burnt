@@ -1,5 +1,5 @@
 import streamlit as st
-import panda as pd
+import pandas as pd
 
 data = pd.DataFrame({
     'Column 1': [1, 2, 3],
