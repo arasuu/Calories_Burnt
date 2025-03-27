@@ -55,7 +55,7 @@ if model:
     try:
         # Raw prediction
         calories = model.predict(input_data)[0]  
-        st.subheader(f"Estimated Calories Burned: {calories:.0f} kcal")
+        st.subheader(f"Estimated Burn: {calories:.0f} kcal")
         st.progress(min(int(calories / 10), 100))  # Simple visual
 
        
