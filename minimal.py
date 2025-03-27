@@ -30,12 +30,12 @@ with st.form("user_input"):
             gender, age, height, weight, 
             duration, heart_rate, body_temp
         ]], columns=[
-            "male", "Age", "Height", "Weight",
+            "gender", "Age", "Height", "Weight",
             "Duration", "Heart_Rate", "Body_Temp"
         ])
         
         # Preprocess (add your own preprocessing steps)
-        input_data["male"] = input_data["male"].map({"male": 1, "female": 0})
+        input_data["male"] = input_data["gender"].map({"male": 1, "female": 0})
 
 # Check if model is loaded
 if model:
