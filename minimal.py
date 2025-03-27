@@ -39,15 +39,16 @@ with st.form("user_input"):
         input_data["Gender"] = input_data["Gender"].map({"male": 1, "female": 0})
 
 # Check if model is loaded
-st.write("Input data type:", type(input_data))
-st.write("Input data preview:", input_data.head())
-st.write("Are all input values numeric?", input_data.applymap(pd.to_numeric, errors='coerce').notna().all())
+
 
 
 if model:
     expected_features = model.feature_names_in_
     st.write("Expected features:", expected_features)
 
+    st.write("Input data type:", type(expected_features))
+    st.write("Input data preview:", expected_features.head())
+    st.write("Are all input values numeric?", expected_features.applymap(pd.to_numeric, errors='coerce').notna().all())
         
     #input_data = input_data[expected_features]
 
