@@ -1,3 +1,8 @@
+import streamlit as st
+data = pd.DataFrame({
+    'Column 1': [1, 2, 3],
+    'Column 2': ['A', 'B', 'C']
+})
 st.button('Hit me')
 st.data_editor('Edit data', data)
 st.checkbox('Check me out')
@@ -15,3 +20,4 @@ st.file_uploader('File uploader')
 st.download_button('On the dl', data)
 st.camera_input("一二三,茄子!")
 st.color_picker('Pick a color')
+
