@@ -43,11 +43,10 @@ with st.form("user_input"):
 # Check if model is loaded
 if model:
     expected_features = model.feature_names_in_
-    st.write("Expected features:", expected_features)
+    #st.write("Expected features:", expected_features)
 
     st.write("Input data preview:", input_data.head())  # Display input data preview
-    st.write("Are all input values numeric?", input_data.applymap(pd.to_numeric, errors='coerce').notna().all())
-    
+        
     try:
         # Raw prediction
         calories = model.predict(input_data)[0]  
