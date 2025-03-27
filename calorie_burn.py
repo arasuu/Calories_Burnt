@@ -55,11 +55,11 @@ if model:
     try:
         # Raw prediction
         calories = model.predict(input_data)[0]  
-        st.subheader(f"{calories:.0f} kcal burn!!!  Keep grinding! 🔥")
+        st.subheader(f"Estimated Calories Burned: {calories:.0f} kcal")
         st.progress(min(int(calories / 10), 100))  # Simple visual
 
-        
-        st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
+       
+        st.success(f" {calories:.0f} kcal burn!!!  Keep grinding! 🔥 ")
         
     except Exception as e:
         st.error(f"Prediction failed: {e}")
