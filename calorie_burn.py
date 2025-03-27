@@ -38,6 +38,9 @@ with st.form("user_input"):
         # Encode Gender: Add 'male' column
         input_data["male"] = 1 if gender == "male" else 0
         
+        
+
+        
         # Reorder columns to match model's expected order
         expected_columns = ["male", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"]
         input_data = input_data[expected_columns]
@@ -47,9 +50,8 @@ if model:
     expected_features = model.feature_names_in_
     #st.write("Expected features:", expected_features)
     
-    input_data["Name"] = name if name else "N/A"
+    input_data.insert(0, "Name", name if name else "N/A")
 
-    st.write("Input data preview:", input_data.head()) 
     st.write("Input data preview:", input_data.head())  # Display input data preview
         
     try:
