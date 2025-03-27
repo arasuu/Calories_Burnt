@@ -30,12 +30,9 @@ with st.form("user_input"):
             "User_ID", "Gender", "Age", "Height", "Weight",
             "Duration", "Heart_Rate", "Body_Temp"
         ])
-        
-        # Preprocess (add your own preprocessing steps)
-        input_data["Gender"] = input_data["Gender"].map({"male": 1, "female": 0})
-        
+                
         # Predict
-        calories = finalized_model.predict(input_data)[0]
+        calories = model.predict(input_data)[0]
         st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
 
 # Add data table (optional)
