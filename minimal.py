@@ -3,17 +3,8 @@ import pandas as pd
 import pickle
 import sys
 import os
-
-try:
-    from xgboost import XGBRegressor
-except ImportError as e:
-    st.error(f"""
-    ❌ Critical Error: XGBoost not installed!
-    ========================================
-    Please add 'xgboost>=2.0.0' to requirements.txt
-    Current Python path: {sys.path}
-    """)
-    st.stop()  # Halt the app completely
+import sklearn
+from sklearn.ensemble import GradientBoostingClassifier
 
 
 @st.cache_resource
