@@ -1,109 +1,18 @@
 import streamlit as st
-import pandas as pd
 import pickle
-import sys
-import os
+import pandas as pd
 
-@st.cache_resource
+@st.cache_data
 def load_model():
-    try:
-        with open('finalized_model.pkl', 'rb') as f:
-            model = pickle.load(f)
-            
-            # Verify the loaded model is actually an XGBoost model
-            if "xgboost" not in str(type(model)).lower():
-                st.error("⚠️ Loaded model is not an XGBoost model!")
-                return None
-                
-            return model
-    except Exception as e:
-        st.error(f"""
-        🚨 Model Loading Failed
-        ======================
-        Error: {str(e)}
-        Make sure:
-        1. calorie_model.pkl exists
-        2. It's a valid XGBoost model
-        3. File is in the same directory
-        """)
-        return None
+    with open('calorie_predictor.pickle', 'rb') as f:
+        return pickle.load(f)
 
-# ---- Streamlit UI ----
-st.title("🔥 Calorie Burn Predictor")
 model = load_model()
-st.write("Model type:", type(model))  # Should show XGBRegressor
-'''
-if model:
-    with st.form("input_form"):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            gender = st.radio("Gender", ["Male", "Female"], index=0)
-            age = st.slider("Age", 10, 100, 30)
-            height = st.number_input("Height (cm)", 100, 250, 175)
-            
-        with col2:
-            weight = st.number_input("Weight (kg)", 30, 200, 70)
-            duration = st.slider("Duration (mins)", 1, 300, 30)
-            heart_rate = st.slider("Heart Rate (bpm)", 50, 200, 120)
-        
-        if st.form_submit_button("Calculate Calories"):
-            try:
-                input_data = pd.DataFrame({
-                    'Gender': [1 if gender == "Male" else 0],
-                    'Age': [age],
-                    'Height': [height],
-                    'Weight': [weight],
-                    'Duration': [duration],
-                    'Heart_Rate': [heart_rate]
-                })
-                
-                calories = model.predict(input_data)[0]
-                st.success(f"**Estimated Calories Burned:** {calories:.0f} kcal")
-                
-            except Exception as e:
-                st.error(f"Prediction failed: {str(e)}")'''
 
-# Replace your prediction code with this:
+st.title("Calorie Burn Calculator 🔥")
+duration = st.slider("Exercise Duration (min)", 1, 120, 30)
+heart_rate = st.number_input("Heart Rate (bpm)", 60, 200, 100)
 
-if submitted and model:
-    try:
-        # Debug: Show input data structure
-        st.write("Model features expected:", model.feature_names_in_)
-        
-        input_data = pd.DataFrame({
-            'Gender': [1 if gender == "Male" else 0],
-            'Age': [age],
-            'Height': [height],
-            'Weight': [weight],
-            'Duration': [duration],
-            'Heart_Rate': [heart_rate]
-        })
-        
-        # Ensure column order matches training
-        input_data = input_data[model.feature_names_in_]
-        
-        st.write("Input data being sent:", input_data)
-
-        st.write("⭐ DEBUG - Model Info ⭐")
-        st.write("Model type:", type(model))
-        st.write("Model features expected:", model.feature_names_in_)
-        st.write("Input data being sent:", input_data)
-        st.write("Input columns:", input_data.columns)
-        # Make prediction
-        calories = model.predict(input_data)[0]
-        st.success(f"Estimated Calories Burned: {calories:.0f} kcal")
-        
-    except Exception as e:
-        st.error(f"""
-        Prediction Failed!
-        =================
-        Error: {str(e)}
-        Please check:
-        1. All input fields are filled
-        2. Model expects {model.n_features_in_} features
-        3. Input types are correct
-        """)
-
-else:
-    st.warning("App cannot run without a valid model")
+if st.button("Predict"):
+    calories = model.predict([[duration, heart_rate]])[0]
+    st.success(f"Estimated calories burned: {calories:.0f} kcal")
