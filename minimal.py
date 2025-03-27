@@ -4,7 +4,7 @@ import pandas as pd
 
 @st.cache_data
 def load_model():
-    with open('calorie_predictor.pickle', 'rb') as f:
+    with open('finalized_model.pkl', 'rb') as f:
         return pickle.load(f)
 
 model = load_model()
