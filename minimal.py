@@ -4,7 +4,7 @@ import pandas as pd
 
 # Load model with error handling
 try:
-    with open('finalized_model.pickle', 'rb') as f:
+    with open('finalized_model.pkl', 'rb') as f:
         model = pickle.load(f)
 except Exception as e:
     st.error(f"Error loading model: {e}")
