@@ -57,7 +57,10 @@ if model:
         calories = model.predict(input_data)[0]  
         st.subheader(f"⚡Estimated burn: {calories:.0f} kcal")
         st.progress(min(int(calories / 10), 100))  # Simple visual
+
+        
         st.success(f"Predicted Calories Burned: {calories:.0f} kcal")
+        
     except Exception as e:
         st.error(f"Prediction failed: {e}")
 else:
