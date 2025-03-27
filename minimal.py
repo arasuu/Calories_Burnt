@@ -39,22 +39,17 @@ with st.form("user_input"):
         input_data["Gender"] = input_data["Gender"].map({"male": 1, "female": 0})
 
 # Check if model is loaded
-
-
-
 if model:
     expected_features = model.feature_names_in_
     st.write("Expected features:", expected_features)
 
     st.write("Input data type:", type(input_data))
-    st.write("Input data preview:", expected_features.head())
-    st.write("Are all input values numeric?", expected_features.applymap(pd.to_numeric, errors='coerce').notna().all())
-        
-    #input_data = input_data[expected_features]
-
+    st.write("Input data preview:", input_data.head())  # Fix here to display input data preview
+    st.write("Are all input values numeric?", input_data.applymap(pd.to_numeric, errors='coerce').notna().all())
+    
     try:
         # Raw prediction
-        calories = model.predict(expected_features)[0]
+        calories = model.predict(input_data)[0]  # Fix: Use input_data instead of expected_features
         st.subheader(f"Estimated burn: {calories:.0f} kcal")
         st.progress(min(int(calories / 10), 100))  # Simple visual
     except Exception as e:
