@@ -42,7 +42,7 @@ with st.form("user_input"):
 
         
         # Reorder columns to match model's expected order
-        expected_columns = ["male", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"]
+        expected_columns = ["male", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp","Name"]
         input_data = input_data[expected_columns]
 
 # Check if model is loaded
