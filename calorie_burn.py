@@ -49,8 +49,8 @@ with st.form("user_input"):
 if model:
     expected_features = model.feature_names_in_
     #st.write("Expected features:", expected_features)
-    
-    st.write("Input data preview:", input_data.head())  # Display input data preview
+    if not input_data.empty:
+        st.write("Input data preview:", input_data.head())  # Display input data preview
         
     try:
         # Raw prediction
