@@ -46,12 +46,12 @@ if model:
         
     input_data = input_data[expected_features]
 
-        try:
-            # Raw prediction
-            calories = model.predict(input_data)[0]
-            st.subheader(f"Estimated burn: {calories:.0f} kcal")
-            st.progress(min(int(calories / 10), 100))  # Simple visual
-        except Exception as e:
-            st.error(f"Prediction failed: {e}")
+    try:
+        # Raw prediction
+        calories = model.predict(input_data)[0]
+        st.subheader(f"Estimated burn: {calories:.0f} kcal")
+        st.progress(min(int(calories / 10), 100))  # Simple visual
+    except Exception as e:
+        st.error(f"Prediction failed: {e}")
 else:
     st.warning("⚠️ Model is not available. Please check the model file.")
