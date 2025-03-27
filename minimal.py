@@ -3,9 +3,6 @@ import pandas as pd
 import pickle
 import sys
 import os
-import sklearn
-from sklearn.ensemble import GradientBoostingClassifier
-
 
 @st.cache_resource
 def load_model():
