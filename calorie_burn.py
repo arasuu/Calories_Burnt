@@ -15,7 +15,6 @@ st.title("⚡ Quick Calorie Check")
 
 with st.form("user_input"):
     st.header("Personal Details")
-    user_id = st.number_input("User ID", min_value=10000000, max_value=99999999, value=14733363)
     gender = st.radio("Gender", ["male", "female"])
     age = st.slider("Age", 10, 100, 25)
     height = st.number_input("Height (cm)", 100, 250, 170)
@@ -27,18 +26,19 @@ with st.form("user_input"):
     body_temp = st.number_input("Body Temp (°C)", 35.0, 42.0, 37.0)
     
     if st.form_submit_button("Predict Calories"):
+        # Create DataFrame with correct columns
         input_data = pd.DataFrame([[
-            user_id, gender, age, height, weight, 
-            duration, heart_rate, body_temp
+            age, height, weight, duration, heart_rate, body_temp
         ]], columns=[
-            "User_ID", "Gender", "Age", "Height", "Weight",
-            "Duration", "Heart_Rate", "Body_Temp"
+            "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"
         ])
         
-        # Preprocess (drop User_ID and encode Gender as 'male')
-        input_data = input_data.drop(columns=["User_ID"])
-        input_data["male"] = input_data["Gender"].map({"male": 1, "female": 0})
-        input_data = input_data.drop(columns=["Gender"])
+        # Encode Gender: Add 'male' column
+        input_data["male"] = 1 if gender == "male" else 0
+        
+        # Reorder columns to match model's expected order
+        expected_columns = ["male", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"]
+        input_data = input_data[expected_columns]
 
 # Check if model is loaded
 if model:
@@ -50,7 +50,7 @@ if model:
     
     try:
         # Raw prediction
-        calories = model.predict(input_data)[0]  # Predict using the processed input_data
+        calories = model.predict(input_data)[0]  
         st.subheader(f"Estimated burn: {calories:.0f} kcal")
         st.progress(min(int(calories / 10), 100))  # Simple visual
     except Exception as e:
