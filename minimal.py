@@ -43,17 +43,8 @@ if model:
     expected_features = model.feature_names_in_
     st.write("Expected features:", expected_features)
 
-    # When user presses the button
-    if st.button("Predict"):
-        # Prepare the input data to match the expected features
-        input_data = pd.DataFrame({
-            'Duration': [duration],
-            'Heart_Rate': [heart_rate],
-            # You can add any other required features here as per the model's needs
-        })
-
-        # Ensure the input data columns match the model's expected columns
-        input_data = input_data[expected_features]
+        
+    input_data = input_data[expected_features]
 
         try:
             # Raw prediction
