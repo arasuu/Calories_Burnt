@@ -19,7 +19,7 @@ except ImportError as e:
 @st.cache_resource
 def load_model():
     try:
-        with open('calorie_model.pkl', 'rb') as f:
+        with open('finalized_model.pkl', 'rb') as f:
             model = pickle.load(f)
             
             # Verify the loaded model is actually an XGBoost model
@@ -43,6 +43,7 @@ def load_model():
 # ---- Streamlit UI ----
 st.title("🔥 Calorie Burn Predictor")
 model = load_model()
+st.write("Model type:", type(model))  # Should show XGBRegressor
 
 if model:
     with st.form("input_form"):
