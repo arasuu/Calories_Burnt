@@ -14,21 +14,7 @@ Many individuals struggle to estimate their calories burned during workouts, lea
 
 Target Variable: Calories burned
 
-Features:
-
-Age
-
-Height
-
-Weight
-
-Gender
-
-Workout Duration
-
-Heart Rate
-
-Body Temperature
+Features: Age, Height, Weight, Gender, Workout, Duration, Heart Rate, Body Temperature
 
 🛠️ Technologies and Tools Used
 
@@ -78,6 +64,8 @@ o	Root Mean Squared Error (RMSE): 2.2966088664340956
 
 The model is deployed using Streamlit, providing an interactive web interface where users can input their details and get real-time calorie burn predictions.
 
+https://caloriesburn.streamlit.app/    -----  might've fallen asleep due to inactivity
+
 🔥 Future Enhancements
 
 Incorporate additional features such as activity type and intensity level.
@@ -87,10 +75,6 @@ Improve model accuracy with more diverse datasets.
 Expand deployment for mobile apps and wearable fitness devices.
 
 📌 How to Run the Project
-
-Clone the repository:
-
-git clone https://github.com/your-repo/calories-burn-prediction.git
 
 Install dependencies:
 
@@ -106,9 +90,5 @@ Enter your details in the UI and get your calories burned prediction!
 
 Feel free to fork the repository and submit pull requests for improvements!
 
-📜 License
 
-This project is licensed under the MIT License.
-
-🔗 Author: [Your Name]📧 Contact: your.email@example.com🌟 GitHub: [Your GitHub Profile]
-
+🔗 Author: Arasu Ragupathi  📧 Contact: arasuragu23@gmail.com 🌟 GitHub: https://github.com/arasuu
