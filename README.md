@@ -28,7 +28,7 @@ Deployment: Streamlit
 
 🚀 Methodology
 
-Data Preprocessing:
+*****Data Preprocessing:
 
 Handled missing values and encoded categorical variables.
 
