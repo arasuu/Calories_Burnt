@@ -28,13 +28,13 @@ Deployment: Streamlit
 
 🚀 Methodology
 
-*****Data Preprocessing:
+**Data Preprocessing:
 
 Handled missing values and encoded categorical variables.
 
 Normalized numerical features for better model performance.
 
-Model Training & Evaluation:
+**Model Training & Evaluation:
 
 Tested multiple models: Decision Trees, Random Forest, Linear Regression, and XGBoost.
 
@@ -42,7 +42,7 @@ Used GridSearchCV for hyperparameter tuning.
 
 Evaluated models using R² Score, MAE, MSE, and RMSE.
 
-Findings:
+**Findings:
 
 XGBoost achieved the best performance with the highest accuracy and lowest error.
 
@@ -54,10 +54,10 @@ Best Model: XGBoost
 
 Performance Metrics:
 
-o	R2 Score: 0.9986863132331905
-o	Mean Absolute Error (MAE): 1.5521575984954834
-o	Mean Squared Error (MSE): 5.2744122853837005
-o	Root Mean Squared Error (RMSE): 2.2966088664340956
+- R2 Score: 0.9986863132331905
+- Mean Absolute Error (MAE): 1.5521575984954834
+- Mean Squared Error (MSE): 5.2744122853837005
+- Root Mean Squared Error (RMSE): 2.2966088664340956
 
 
 🌐 Deployment
