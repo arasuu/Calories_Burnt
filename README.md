@@ -64,7 +64,7 @@ Performance Metrics:
 
 The model is deployed using Streamlit, providing an interactive web interface where users can input their details and get real-time calorie burn predictions.
 
-https://caloriesburn.streamlit.app/    -----  might've fallen asleep due to inactivity
+https://caloriesburn.streamlit.app/    -----  might've fallen asleep due to inactivity(get that back up)
 
 🔥 Future Enhancements
 
